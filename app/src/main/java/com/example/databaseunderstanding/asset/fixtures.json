@@ -1,0 +1,82 @@
+{
+  "get": "fixtures",
+  "parameters": {
+    "date": "2021-01-29"
+  },
+  "errors": [],
+  "results": 115,
+  "paging": {
+    "current": 1,
+    "total": 1
+  },
+  "response": [
+    {
+      "fixture": {
+        "id": 663684,
+        "referee": "A. Sánchez",
+        "timezone": "UTC",
+        "date": "2021-01-29T00:00:00+00:00",
+        "timestamp": 1611878400,
+        "periods": {
+          "first": 1611878400,
+          "second": 1611882000
+        },
+        "venue": {
+          "id": 1207,
+          "name": "Estadio Rommel Fernández Gutiérrez",
+          "city": "Ciudad de Panamá"
+        },
+        "status": {
+          "long": "Match Finished",
+          "short": "FT",
+          "elapsed": 90
+        }
+      },
+      "league": {
+        "id": 10,
+        "name": "Friendlies",
+        "country": "World",
+        "logo": "https://media.api-sports.io/football/leagues/10.png",
+        "flag": null,
+        "season": 2021,
+        "round": "Friendlies 1"
+      },
+      "teams": {
+        "home": {
+          "id": 11,
+          "name": "Panama",
+          "logo": "https://media.api-sports.io/football/teams/11.png",
+          "winner": null
+        },
+        "away": {
+          "id": 14,
+          "name": "Serbia",
+          "logo": "https://media.api-sports.io/football/teams/14.png",
+          "winner": null
+        }
+      },
+      "goals": {
+        "home": 0,
+        "away": 0
+      },
+      "score": {
+        "halftime": {
+          "home": 0,
+          "away": 0
+        },
+        "fulltime": {
+          "home": 0,
+          "away": 0
+        },
+        "extratime": {
+          "home": null,
+          "away": null
+        },
+        "penalty": {
+          "home": null,
+          "away": null
+        }
+      }
+    }
+  ]
+}
