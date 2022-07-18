@@ -1,5 +1,6 @@
 package com.example.databaseunderstanding.model
 
+import com.example.databaseunderstanding.model.fixture.Paging
 import com.google.gson.JsonArray
 import com.google.gson.JsonPrimitive
 

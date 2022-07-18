@@ -1,6 +1,6 @@
 package com.example.databaseunderstanding.retrofit.timezone
 
-import com.example.databaseunderstanding.model.Paging
+import com.example.databaseunderstanding.model.fixture.Paging
 import com.google.gson.JsonArray
 import com.google.gson.JsonPrimitive
 

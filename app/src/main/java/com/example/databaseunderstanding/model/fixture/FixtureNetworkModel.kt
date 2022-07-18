@@ -1,4 +1,4 @@
-package com.example.databaseunderstanding.model
+package com.example.databaseunderstanding.model.fixture
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonPrimitive

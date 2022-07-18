@@ -1,8 +1,8 @@
 package com.example.databaseunderstanding.retrofit.fixture
 
-import com.example.databaseunderstanding.model.Paging
-import com.example.databaseunderstanding.model.Parameters
-import com.example.databaseunderstanding.model.FixtureItem
+import com.example.databaseunderstanding.model.fixture.Paging
+import com.example.databaseunderstanding.model.fixture.Parameters
+import com.example.databaseunderstanding.model.fixture.FixtureItem
 import com.google.gson.JsonArray
 import com.google.gson.JsonPrimitive
 

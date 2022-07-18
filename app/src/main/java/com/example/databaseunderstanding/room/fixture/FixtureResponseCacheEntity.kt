@@ -2,7 +2,7 @@ package com.example.databaseunderstanding.room.fixture
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.databaseunderstanding.model.*
+import com.example.databaseunderstanding.model.fixture.*
 import java.io.Serializable
 
 @Entity(tableName = "Fixtures")

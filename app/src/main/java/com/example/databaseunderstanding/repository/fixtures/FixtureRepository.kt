@@ -1,7 +1,7 @@
 package com.example.databaseunderstanding.repository.fixtures
 
 import android.util.Log
-import com.example.databaseunderstanding.model.FixtureItem
+import com.example.databaseunderstanding.model.fixture.FixtureItem
 import com.example.databaseunderstanding.retrofit.fixture.FixtrueRetrofitCall
 import com.example.databaseunderstanding.retrofit.fixture.FixtureResponseEntity
 import com.example.databaseunderstanding.retrofit.fixture.FixtureMapper

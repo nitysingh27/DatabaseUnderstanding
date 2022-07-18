@@ -1,7 +1,7 @@
 package com.example.databaseunderstanding.room.converters
 
 import androidx.room.TypeConverter
-import com.example.databaseunderstanding.model.*
+import com.example.databaseunderstanding.model.fixture.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

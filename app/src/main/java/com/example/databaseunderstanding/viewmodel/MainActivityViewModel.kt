@@ -3,12 +3,11 @@ package com.example.databaseunderstanding.viewmodel
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.databaseunderstanding.model.FixtureItem
+import com.example.databaseunderstanding.model.fixture.FixtureItem
 import com.example.databaseunderstanding.repository.fixtures.FixtureRepository
 import com.example.databaseunderstanding.repository.timeZone.TimeZoneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

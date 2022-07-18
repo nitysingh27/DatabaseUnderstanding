@@ -1,6 +1,6 @@
 package com.example.databaseunderstanding.room.fixture
 
-import com.example.databaseunderstanding.model.FixtureItem
+import com.example.databaseunderstanding.model.fixture.FixtureItem
 import com.example.databaseunderstanding.util.EntityMapper
 import javax.inject.Inject
 

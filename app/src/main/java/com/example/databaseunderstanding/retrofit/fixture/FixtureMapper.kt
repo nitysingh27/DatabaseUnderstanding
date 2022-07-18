@@ -1,6 +1,6 @@
 package com.example.databaseunderstanding.retrofit.fixture
 
-import com.example.databaseunderstanding.model.FixtureNetworkModel
+import com.example.databaseunderstanding.model.fixture.FixtureNetworkModel
 import com.example.databaseunderstanding.util.EntityMapper
 import javax.inject.Inject
 

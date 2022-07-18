@@ -1,4 +1,4 @@
-package com.example.databaseunderstanding.model
+package com.example.databaseunderstanding.model.fixture
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
