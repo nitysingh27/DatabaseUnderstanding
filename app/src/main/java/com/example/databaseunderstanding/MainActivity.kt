@@ -30,12 +30,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             DatabaseUnderstandingTheme {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
-
                     item {
                         Button(onClick = {
                             viewModel.fixtureData.value = listOf()
                             viewModel.getFixtureData()
                             viewModel.getTimeZones()
+                            viewModel.getLeagues()
                         }) {
                             Text(text = "Click me to get data")
                         }
@@ -95,6 +95,28 @@ class MainActivity : ComponentActivity() {
                             val list = viewModel.listOfTimeZones.value
                             items(count = list.size, itemContent = {
                                 Text(text = list[it], modifier = Modifier.padding(all = 20.dp))
+                            })
+                        }
+                    }
+                    item {
+                        LazyRow(modifier = Modifier.fillMaxWidth()) {
+                            val list = viewModel.leaguesList.value
+                            items(count = list.size, itemContent = {
+                                Card(
+                                    shape = RoundedCornerShape(20.dp),
+                                    modifier = Modifier.absolutePadding(left = 5.dp, right = 5.dp)) {
+                                    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                                        Image(
+                                            painter = rememberAsyncImagePainter(list[it].league.logo),
+                                            contentDescription = null,
+                                            modifier = Modifier.size(80.dp)
+                                        )
+                                        Text(
+                                            text = list[it].league.name,
+                                            modifier = Modifier.padding(all = 20.dp)
+                                        )
+                                    }
+                                }
                             })
                         }
                     }

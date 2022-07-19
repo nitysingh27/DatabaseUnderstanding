@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.databaseunderstanding.room.BlogDatabase
 import com.example.databaseunderstanding.room.fixture.FixtureDao
+import com.example.databaseunderstanding.room.league.LeagueDao
 import com.example.databaseunderstanding.room.timezone.TimeZoneDao
 import dagger.Module
 import dagger.Provides
@@ -39,4 +40,12 @@ object RoomModule {
     fun providesTimeZoneDao(blogDatabase: BlogDatabase) : TimeZoneDao {
         return blogDatabase.timeZoneDao()
     }
+
+    @Singleton
+    @Provides
+    fun providesLeagueDao(blogDatabase: BlogDatabase) : LeagueDao {
+        return blogDatabase.leagueDao()
+    }
+
+
 }

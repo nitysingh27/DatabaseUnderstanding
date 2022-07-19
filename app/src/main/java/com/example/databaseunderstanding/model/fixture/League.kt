@@ -12,5 +12,6 @@ data class League(
     var logo: String = "",
     var name: String = "",
     var round: String = "",
-    var season: Int = 0
+    var season: Int = 0,
+    var type: String = ""
 ) : Parcelable

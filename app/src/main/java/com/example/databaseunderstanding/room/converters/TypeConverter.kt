@@ -2,6 +2,8 @@ package com.example.databaseunderstanding.room.converters
 
 import androidx.room.TypeConverter
 import com.example.databaseunderstanding.model.fixture.*
+import com.example.databaseunderstanding.model.leagues.Country
+import com.example.databaseunderstanding.model.leagues.Season
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -71,4 +73,40 @@ class TypeConverter {
     fun toLeague(t: String): League {
         return Gson().fromJson(t, League::class.java)
     }
+
+
+    @TypeConverter
+    fun fromCountry(country: Country): String {
+        return Gson().toJson(country)
+    }
+
+    @TypeConverter
+    fun toCountry(t: String): Country {
+        return Gson().fromJson(t, Country::class.java)
+    }
+
+
+    @TypeConverter
+    fun fromSeason(fixture: Season): String {
+        return Gson().toJson(fixture)
+    }
+
+    @TypeConverter
+    fun toSeason(t: String): Season {
+        return Gson().fromJson(t, Season::class.java)
+    }
+
+    @TypeConverter
+    fun fromListSeason(stringList  : List<Season>) : String{
+        return Gson().toJson(stringList)
+    }
+
+    @TypeConverter
+    fun getSeasonList(listOfString: String?): List<Season?>? {
+        return Gson().fromJson(
+            listOfString,
+            object : TypeToken<List<Season?>?>() {}.type
+        )
+    }
+
 }
