@@ -2,6 +2,7 @@ package com.example.databaseunderstanding.di
 
 import com.example.databaseunderstanding.retrofit.fixture.FixtrueRetrofitCall
 import com.example.databaseunderstanding.retrofit.league.LeagueRetrofitCall
+import com.example.databaseunderstanding.retrofit.teams.TeamsRetrofitCall
 import com.example.databaseunderstanding.retrofit.timezone.TimeZoneRetrofitCall
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -48,13 +49,21 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun providesTimeZoneService(retrofit: Retrofit.Builder) : TimeZoneRetrofitCall {
+    fun providesTimeZoneService(retrofit: Retrofit.Builder): TimeZoneRetrofitCall {
         return retrofit.build().create(TimeZoneRetrofitCall::class.java)
     }
 
     @Singleton
     @Provides
-    fun providesLeagueService(retrofit: Retrofit.Builder) : LeagueRetrofitCall {
+    fun providesLeagueService(retrofit: Retrofit.Builder): LeagueRetrofitCall {
         return retrofit.build().create(LeagueRetrofitCall::class.java)
     }
+
+    @Singleton
+    @Provides
+    fun provideTeamService(retrofit: Retrofit.Builder): TeamsRetrofitCall {
+        return retrofit.build().create(TeamsRetrofitCall::class.java)
+    }
+
+
 }

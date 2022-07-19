@@ -82,6 +82,7 @@ dependencies {
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0"
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02"
 
     implementation "com.squareup.okhttp3:logging-interceptor:4.10.0"
 

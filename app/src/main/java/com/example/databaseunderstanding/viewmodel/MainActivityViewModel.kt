@@ -5,9 +5,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.databaseunderstanding.model.fixture.FixtureItem
 import com.example.databaseunderstanding.model.leagues.LeagueResponse
-import com.example.databaseunderstanding.model.leagues.LeagueResponseModel
+import com.example.databaseunderstanding.model.teams.TeamsInformation
 import com.example.databaseunderstanding.repository.fixtures.FixtureRepository
 import com.example.databaseunderstanding.repository.league.LeagueRepository
+import com.example.databaseunderstanding.repository.team.TeamRepository
 import com.example.databaseunderstanding.repository.timeZone.TimeZoneRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,8 +19,10 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
     private val mainRepository: FixtureRepository,
     private val timeZoneRepository: TimeZoneRepository,
-    private val leagueRepository: LeagueRepository
+    private val leagueRepository: LeagueRepository,
+    private val teamRepository: TeamRepository
 ) : ViewModel() {
+    var leagueSelected: LeagueResponse = LeagueResponse()
     val fixtureData = mutableStateOf<List<FixtureItem>>(listOf())
     val listOfTimeZones = mutableStateOf<List<String>>(listOf())
 

@@ -4,6 +4,8 @@ import androidx.room.TypeConverter
 import com.example.databaseunderstanding.model.fixture.*
 import com.example.databaseunderstanding.model.leagues.Country
 import com.example.databaseunderstanding.model.leagues.Season
+import com.example.databaseunderstanding.model.teams.Team
+import com.example.databaseunderstanding.model.teams.Venue
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -97,7 +99,27 @@ class TypeConverter {
     }
 
     @TypeConverter
-    fun fromListSeason(stringList  : List<Season>) : String{
+    fun fromTeam(fixture: Team): String {
+        return Gson().toJson(fixture)
+    }
+
+    @TypeConverter
+    fun toTeam(t: String): Team {
+        return Gson().fromJson(t, Team::class.java)
+    }
+
+    @TypeConverter
+    fun fromVenue(fixture: Venue): String {
+        return Gson().toJson(fixture)
+    }
+
+    @TypeConverter
+    fun toVenue(t: String): Venue {
+        return Gson().fromJson(t, Venue::class.java)
+    }
+
+    @TypeConverter
+    fun fromListSeason(stringList: List<Season>): String {
         return Gson().toJson(stringList)
     }
 

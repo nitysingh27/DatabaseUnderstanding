@@ -1,6 +1,7 @@
 package com.example.databaseunderstanding.model.fixture
 
 import android.os.Parcelable
+import com.example.databaseunderstanding.model.teams.Venue
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

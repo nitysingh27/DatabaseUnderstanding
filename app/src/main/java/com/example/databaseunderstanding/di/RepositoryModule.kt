@@ -2,17 +2,21 @@ package com.example.databaseunderstanding.di
 
 import com.example.databaseunderstanding.repository.fixtures.FixtureRepository
 import com.example.databaseunderstanding.repository.league.LeagueRepository
+import com.example.databaseunderstanding.repository.team.TeamRepository
 import com.example.databaseunderstanding.repository.timeZone.TimeZoneRepository
 import com.example.databaseunderstanding.retrofit.fixture.FixtrueRetrofitCall
 import com.example.databaseunderstanding.retrofit.fixture.FixtureMapper
 import com.example.databaseunderstanding.retrofit.league.LeagueResponseMapper
 import com.example.databaseunderstanding.retrofit.league.LeagueRetrofitCall
+import com.example.databaseunderstanding.retrofit.teams.TeamsRetrofitCall
 import com.example.databaseunderstanding.retrofit.timezone.TimeZoneMapper
 import com.example.databaseunderstanding.retrofit.timezone.TimeZoneRetrofitCall
 import com.example.databaseunderstanding.room.fixture.FixtureCacheMapper
 import com.example.databaseunderstanding.room.fixture.FixtureDao
 import com.example.databaseunderstanding.room.league.LeagueCacheMapper
 import com.example.databaseunderstanding.room.league.LeagueDao
+import com.example.databaseunderstanding.room.team.TeamInformationCacheMapper
+import com.example.databaseunderstanding.room.team.TeamsDao
 import com.example.databaseunderstanding.room.timezone.TimeZoneDao
 import com.example.databaseunderstanding.room.timezone.TimeZoneMapperCache
 import dagger.Module
@@ -66,6 +70,20 @@ object RepositoryModule {
             leagueRetrofitCall = leagueRetrofitCall,
             leagueCacheMapper = leagueCacheMapper,
             leagueDao = leagueDao
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun providesTeamRepository(
+        teamsRetrofitCall: TeamsRetrofitCall,
+        teamInformationCacheMapper: TeamInformationCacheMapper,
+        teamsDao: TeamsDao
+    ) : TeamRepository{
+        return TeamRepository(
+            teamsRetrofitCall = teamsRetrofitCall,
+            teamsDao,
+            teamInformationCacheMapper
         )
     }
 }
