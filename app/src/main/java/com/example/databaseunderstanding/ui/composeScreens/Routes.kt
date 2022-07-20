@@ -4,4 +4,5 @@ object Routes {
     val HOME = "HOME"
     val LEAGUES = "Leagues"
     val teams = "Teams"
+    val teamDetails = "teamDetails"
 }

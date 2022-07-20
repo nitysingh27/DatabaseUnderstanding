@@ -1,6 +1,8 @@
 package com.example.databaseunderstanding.repository.team
 
 import android.util.Log
+import com.example.databaseunderstanding.model.teams.TeamStatisticsResponse
+import com.example.databaseunderstanding.model.teams.TeamStatisticsResponseModel
 import com.example.databaseunderstanding.model.teams.TeamsInformation
 import com.example.databaseunderstanding.model.teams.TeamsInformationResponseModel
 import com.example.databaseunderstanding.retrofit.teams.TeamsRetrofitCall
@@ -16,12 +18,12 @@ constructor(
 ) {
     private val TAG = "TeamRepository"
 
-    suspend fun getTeamInformation(leagueId: Int, year: Int): List<TeamsInformation> {
+    suspend fun getTeamsInLeague(leagueId: Int, year: Int): List<TeamsInformation> {
         return try {
             var cachedTeamInformation = teamsDao.getTeams(leagueId, year)
             Log.d(TAG, "getTeamInformation: ${cachedTeamInformation.size}")
             if (cachedTeamInformation.isEmpty()) {
-                val list = teamsRetrofitCall.getTeamInformation(leagueId, year)
+                val list = teamsRetrofitCall.getListOfTeamInLeague(leagueId, year)
                 Log.d(TAG, "getTeamInformation: " + Gson().toJson(list))
                 val teamsResponse =
                     Gson().fromJson(Gson().toJson(list), TeamsInformationResponseModel::class.java)
@@ -42,4 +44,23 @@ constructor(
             listOf()
         }
     }
+
+    suspend fun getTeamDetails(teamId: Int, season: Int, league: Int): TeamStatisticsResponse {
+        return try {
+            val teamStatisticsResponse = teamsRetrofitCall.getTeamStatistics(teamId, season, league)
+            Log.d(TAG, "getTeamDetails: " + Gson().toJson(teamStatisticsResponse))
+            val teamObject = Gson().fromJson(
+                Gson().toJson(
+                    teamStatisticsResponse
+                ),
+                TeamStatisticsResponseModel::class.java
+            )
+            Log.d(TAG, "getTeamDetails: " + Gson().toJson(teamObject))
+            TeamStatisticsResponse()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            TeamStatisticsResponse()
+        }
+    }
+
 }
