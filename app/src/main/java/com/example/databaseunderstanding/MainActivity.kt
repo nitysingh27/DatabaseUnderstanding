@@ -29,6 +29,7 @@ import com.example.databaseunderstanding.ui.theme.DatabaseUnderstandingTheme
 import com.example.databaseunderstanding.viewmodel.MainActivityViewModel
 import com.example.databaseunderstanding.viewmodel.TeamsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -38,6 +39,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val mCalendar = Calendar.getInstance()
+        viewModel.mYear.value = mCalendar.get(Calendar.YEAR)
+        viewModel.mMonth.value = mCalendar.get(Calendar.MONTH)
+        viewModel.mDay.value = mCalendar.get(Calendar.DAY_OF_MONTH)
+
         viewModel.getBottomNavItems()
         setContent {
             DatabaseUnderstandingTheme {
@@ -59,9 +66,6 @@ class MainActivity : ComponentActivity() {
     @Composable
     private fun BotNavBar(navController: NavHostController, modifier: Modifier) {
         Card(modifier = modifier, shape = RoundedCornerShape(10.dp), elevation = 10.dp) {
-            val selectedIndex = remember {
-                mutableStateOf(0)
-            }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround,
@@ -70,7 +74,7 @@ class MainActivity : ComponentActivity() {
                 for(index in 0 until viewModel.botNavItems.value.size) {
                     BottomNavBarItem(
                         navController,
-                        selectedIndex,
+                        viewModel.selectedIndex,
                         viewModel.botNavItems.value[index],
                         index
                     )

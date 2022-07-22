@@ -1,18 +1,18 @@
 package com.example.databaseunderstanding.ui.composeScreens
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
@@ -24,53 +24,64 @@ fun HomeScreen(
     viewModel: MainActivityViewModel = hiltViewModel(),
     navHostController: NavHostController
 ) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        item {
-            Button(onClick = {
-                viewModel.fixtureData.value = listOf()
-                viewModel.getTimeZones()
-                viewModel.getLeagues()
-            }) {
-                Text(text = "Click me to get data")
-            }
-        }
-        item {
+    LaunchedEffect(key1 = true) {
+        viewModel.getLeagues()
+    }
 
-        }
-        item {
-            LazyRow(modifier = Modifier.fillMaxWidth()) {
-                val list = viewModel.listOfTimeZones.value
-                items(count = list.size, itemContent = {
-                    Text(text = list[it], modifier = Modifier.padding(all = 20.dp))
-                })
-            }
-        }
-        item {
-            LazyRow(modifier = Modifier.fillMaxWidth()) {
-                val list = viewModel.leaguesList.value
-                items(count = list.size, itemContent = {
-                    Card(
-                        shape = RoundedCornerShape(20.dp),
-                        modifier = Modifier.absolutePadding(left = 5.dp, right = 5.dp).clickable {
-                            viewModel.leagueSelected = list[it]
-                            navHostController.navigate(Routes.teams)
-                        }
+    val list = viewModel.leaguesList.value
+    LazyColumn(modifier = Modifier.fillMaxSize().background(color = Color.LightGray)) {
+        items(count = list.size, itemContent = {
+            Card(
+                shape = RoundedCornerShape(20.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .absolutePadding(left = 10.dp, right = 10.dp, top = 5.dp, bottom = 5.dp)
+                    .clickable {
+                        viewModel.leagueSelected = list[it]
+                        viewModel.selectedIndex.value = 3
+                        navHostController.navigate(Routes.teams)
+                    }
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .absolutePadding(top = 5.dp, bottom = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.fillMaxWidth(0.4f)
                     ) {
-                        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                            Image(
-                                painter = rememberAsyncImagePainter(list[it].league.logo),
-                                contentDescription = null,
-                                modifier = Modifier.size(80.dp)
+                        Image(
+                            painter = rememberAsyncImagePainter(list[it].league.logo),
+                            contentDescription = null,
+                            modifier = Modifier.size(80.dp)
+                        )
+                    }
+                    Column(modifier = Modifier.fillMaxWidth()) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceAround
+                        ) {
+                            Text(
+                                text = list[it].league.name
                             )
                             Text(
-                                text = list[it].league.name,
-                                modifier = Modifier.padding(all = 20.dp)
+                                text = list[it].country.name
+                            )
+                        }
+                        val seasons = list[it].seasons
+
+                        for (s in seasons) {
+                            Text(
+                                text = "${s.start}  - ${s.end}",
+                                modifier = Modifier
+                                    .fillMaxWidth()
                             )
                         }
                     }
-                })
+                }
             }
-        }
-
+        })
     }
 }

@@ -44,29 +44,13 @@ fun FixturesList(navController: NavHostController, homeViewModel: MainActivityVi
     }
     Column(modifier = Modifier.fillMaxSize()) {
         val mContext = LocalContext.current
-        val mYear = remember {
-            mutableStateOf(0)
-        }
-        val mMonth = remember {
-            mutableStateOf(0)
-        }
-        val mDay = remember {
-            mutableStateOf(0)
-        }
-
-        val mCalendar = Calendar.getInstance()
-        mYear.value = mCalendar.get(Calendar.YEAR)
-        mMonth.value = mCalendar.get(Calendar.MONTH)
-        mDay.value = mCalendar.get(Calendar.DAY_OF_MONTH)
-
-        mCalendar.time = Date()
         val mDatePickerDialog = DatePickerDialog(
             mContext,
             { _: DatePicker, Year: Int, mMonths: Int, mDayOfMonth: Int ->
                 val month = if (mMonths < 10) "0$mMonths" else mMonths.toString()
                 val day = if (mDayOfMonth < 10) "0$mDayOfMonth" else mDayOfMonth.toString()
                 date.value = "$Year-$month-$day"
-            }, mYear.value, mMonth.value, mDay.value
+            }, homeViewModel.mYear.value, homeViewModel.mMonth.value, homeViewModel.mDay.value
         )
         Row(modifier = Modifier
             .fillMaxWidth()
@@ -79,15 +63,15 @@ fun FixturesList(navController: NavHostController, homeViewModel: MainActivityVi
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = mDay.value.toString(),
+                text = homeViewModel.mDay.value.toString(),
                 color = Color.White
             )
             Text(
-                text = mMonth.value.toString(),
+                text = homeViewModel.mMonth.value.toString(),
                 color = Color.White
             )
             Text(
-                text = mYear.value.toString(),
+                text = homeViewModel.mYear.value.toString(),
                 color = Color.White
             )
         }
@@ -106,16 +90,17 @@ fun FixturesList(navController: NavHostController, homeViewModel: MainActivityVi
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .absolutePadding(left = 10.dp, right = 10.dp)
+                                .absolutePadding(left = 10.dp, right = 10.dp,top = 5.dp)
                                 .background(
-                                    color = Color.LightGray,
+                                    color = Color.Cyan,
                                     shape = RoundedCornerShape(10.dp)
                                 )
                                 .clickable {
                                     itemVisibility.value = !itemVisibility.value
                                     mappedListEach.value = mappedItems.value
                                 },
-                            horizontalArrangement = Arrangement.SpaceBetween
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
                             Text(
                                 text = mappedItems.key,

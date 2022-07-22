@@ -1,6 +1,7 @@
 package com.example.databaseunderstanding.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.databaseunderstanding.R
@@ -29,6 +30,10 @@ class MainActivityViewModel @Inject constructor(
     val listOfTimeZones = mutableStateOf<List<String>>(listOf())
     val botNavItems = mutableStateOf<List<BottomNavBarItem>>(listOf())
     val mappedFixtureList = mutableStateOf<Map<String, ArrayList<FixtureItem>>>(HashMap())
+    val selectedIndex = mutableStateOf(0)
+    val mYear = mutableStateOf(0)
+    val mMonth = mutableStateOf(0)
+    val mDay = mutableStateOf(0)
 
     fun getBottomNavItems() {
         val list = ArrayList<BottomNavBarItem>()

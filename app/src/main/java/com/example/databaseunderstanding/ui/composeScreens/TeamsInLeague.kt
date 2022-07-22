@@ -8,6 +8,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -26,7 +27,9 @@ fun TeamsInLeague(
     homeViewModel: MainActivityViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-//    teamsViewModel.getTeamsInLeague(homeViewModel.leagueSelected.league.id, 2021)
+    LaunchedEffect(key1 = true) {
+        teamsViewModel.getTeamsInLeague(homeViewModel.leagueSelected.league.id, homeViewModel.mYear.value)
+    }
     val selectedTeam = remember {
         mutableStateOf(TeamsInformation())
     }
