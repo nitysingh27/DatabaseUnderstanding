@@ -41,11 +41,6 @@ fun TeamsInLeague(
                             .width(200.dp)
                             .absolutePadding(left = 5.dp, right = 5.dp, top = 10.dp, bottom = 10.dp)
                             .clickable {
-                                teamsViewModel.getTeamDetails(
-                                    list[it].team.id,
-                                    homeViewModel.leagueSelected.league.id,
-                                    2021
-                                )
                                 selectedTeam.value = list[it]
                             }
                     ) {

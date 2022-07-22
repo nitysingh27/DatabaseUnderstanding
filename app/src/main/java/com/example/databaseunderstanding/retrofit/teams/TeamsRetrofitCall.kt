@@ -35,7 +35,7 @@ interface TeamsRetrofitCall {
         @Query("team") teamId: Int,
         @Query("season") season: Int,
         @Query("league") league: Int
-    ): TeamStatisticsResponseModel
+    ): JsonObject
 
 
 }

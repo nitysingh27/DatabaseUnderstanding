@@ -1,5 +1,6 @@
 package com.example.databaseunderstanding.viewmodel
 
+import android.content.Context
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,9 +29,9 @@ constructor(
     }
 
     val teamStatisctis = mutableStateOf(TeamStatisticsResponse())
-    fun getTeamDetails(teamId : Int, leagueId: Int, year: Int) : TeamStatisticsResponse{
+    fun getTeamDetails(teamId : Int, leagueId: Int, year: Int, context: Context) : TeamStatisticsResponse{
         viewModelScope.launch(Dispatchers.IO) {
-            teamStatisctis.value = teamsRepository.getTeamDetails(teamId, year, leagueId )
+            teamStatisctis.value = teamsRepository.getTeamDetails(teamId, year, leagueId , context)
         }
         return teamStatisctis.value
     }

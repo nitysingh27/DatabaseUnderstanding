@@ -10,10 +10,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.rememberAsyncImagePainter
+import com.example.databaseunderstanding.MainActivity
 import com.example.databaseunderstanding.viewmodel.MainActivityViewModel
 import com.example.databaseunderstanding.viewmodel.TeamsViewModel
 
@@ -26,11 +28,13 @@ fun TeamDetails(
     val selectedTeam = remember {
         teamsViewModel.teamStatisctis
     }
+    val context = LocalContext.current as MainActivity
     LaunchedEffect(key1 = selectedTeam.value) {
         selectedTeam.value = teamsViewModel.getTeamDetails(
             teamsViewModel.clickedTeam.team.id,
             homeViewModel.leagueSelected.league.id,
-            2021
+            2021,
+            context
         )
     }
 
@@ -56,14 +60,14 @@ fun TeamDetails(
         ) {
             val team = selectedTeam.value.team
             val venue = selectedTeam.value.biggest
-            Image(
-                painter = rememberAsyncImagePainter(team.logo),
-                contentDescription = null,
-                modifier = Modifier.size(80.dp)
-            )
-            Text(text = team.code)
-            Text(text = team.name)
-            Text(text = team.country)
+//            Image(
+//                painter = rememberAsyncImagePainter(team.logo),
+//                contentDescription = null,
+//                modifier = Modifier.size(80.dp)
+//            )
+//            Text(text = team.code)
+//            Text(text = team.name)
+//            Text(text = team.country)
 
             Spacer(modifier = Modifier.height(30.dp))
 
