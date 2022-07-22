@@ -14,5 +14,6 @@ data class FixtureResponseCacheEntity(
     var goals: GoalHomeAway = GoalHomeAway(),
     var league: League = League(),
     var score: Score = Score(),
-    var teams: BothTeam = BothTeam()
+    var teams: BothTeam = BothTeam(),
+    var date : String = ""
 ) : Serializable

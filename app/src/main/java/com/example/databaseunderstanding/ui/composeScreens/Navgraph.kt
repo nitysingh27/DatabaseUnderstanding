@@ -21,5 +21,8 @@ fun Navgraphs(navController: NavHostController, viewModel: MainActivityViewModel
         composable(Routes.teamDetails) {
             TeamDetails(navController = navController, teamsViewModel = teamsViewModel, homeViewModel = viewModel)
         }
+        composable(Routes.FIXTURES){
+            FixturesList(navController = navController, homeViewModel = viewModel)
+        }
     }
 }

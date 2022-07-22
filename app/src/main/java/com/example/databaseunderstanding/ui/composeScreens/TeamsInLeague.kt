@@ -26,7 +26,7 @@ fun TeamsInLeague(
     homeViewModel: MainActivityViewModel = hiltViewModel(),
     navController: NavHostController
 ) {
-    teamsViewModel.getTeamsInLeague(homeViewModel.leagueSelected.league.id, 2021)
+//    teamsViewModel.getTeamsInLeague(homeViewModel.leagueSelected.league.id, 2021)
     val selectedTeam = remember {
         mutableStateOf(TeamsInformation())
     }

@@ -11,7 +11,7 @@ interface FixtureDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertFixture(fixtureResponseCacheEntity: FixtureResponseCacheEntity)
 
-    @Query("Select * from fixtures")
-    suspend fun getFixtures(): List<FixtureResponseCacheEntity>
+    @Query("Select * from fixtures where :date==date")
+    suspend fun getFixtures(date: String): List<FixtureResponseCacheEntity>
 
 }

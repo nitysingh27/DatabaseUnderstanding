@@ -28,7 +28,6 @@ fun HomeScreen(
         item {
             Button(onClick = {
                 viewModel.fixtureData.value = listOf()
-                viewModel.getFixtureData()
                 viewModel.getTimeZones()
                 viewModel.getLeagues()
             }) {
@@ -36,54 +35,7 @@ fun HomeScreen(
             }
         }
         item {
-            LazyRow(modifier = Modifier.fillMaxWidth()) {
-                val list = viewModel.fixtureData.value
-                items(count = list.size, itemContent = {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .absolutePadding(
-                                left = 10.dp,
-                                right = 10.dp,
-                                bottom = 10.dp,
-                                top = 10.dp
-                            ), shape = RoundedCornerShape(20.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
-                                Image(
-                                    painter = rememberAsyncImagePainter(list[it].teams.home.logo),
-                                    contentDescription = null,
-                                    modifier = Modifier.size(80.dp)
-                                )
-                                Spacer(modifier = Modifier.width(20.dp))
-                                Text(
-                                    text = list[it].goals.home.toString(),
-                                    fontWeight = FontWeight.Bold
-                                )
-                            }
-                            Text(text = "-", fontWeight = FontWeight.Bold)
-                            Row(verticalAlignment = Alignment.CenterVertically) {
 
-                                Text(
-                                    text = list[it].goals.away.toString(),
-                                    fontWeight = FontWeight.Bold
-                                )
-                                Spacer(modifier = Modifier.width(20.dp))
-                                Image(
-                                    painter = rememberAsyncImagePainter(list[it].teams.away.logo),
-                                    contentDescription = null,
-                                    modifier = Modifier.size(80.dp)
-                                )
-                            }
-                        }
-                    }
-                })
-            }
         }
         item {
             LazyRow(modifier = Modifier.fillMaxWidth()) {

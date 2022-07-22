@@ -17,22 +17,24 @@ constructor(
     private val networkMapper: FixtureMapper
 ) {
 
-    suspend fun getFixtures(): List<FixtureItem> {
+    suspend fun getFixtures(date : String): List<FixtureItem> {
         return try {
-            var cachedData = fixtureDao.getFixtures()
+            var cachedData = fixtureDao.getFixtures(date)
             Log.v("Repository","${cachedData.size}")
             if(cachedData.isEmpty()) {
                 Log.v("Repository","Making network call ")
-                val networkFixtures = fixtureRetrofit.getListOfFixtures()
+                val networkFixtures = fixtureRetrofit.getListOfFixtures(date)
                 Log.v("Repository", networkFixtures.toString())
                 val net =
                     Gson().fromJson(networkFixtures.toString(), FixtureResponseEntity::class.java)
                 val fixtureResponse = networkMapper.mapEntityToDomain(net)
                 val responseList = fixtureResponse.response
                 for (fixture in responseList) {
-                    fixtureDao.insertFixture(cacheMapper.mapDomainToEntity(fixture))
+                    val fixtureResponseCacheEntity = cacheMapper.mapDomainToEntity(fixture)
+                    fixtureResponseCacheEntity.date = date
+                    fixtureDao.insertFixture(fixtureResponseCacheEntity)
                 }
-                cachedData = fixtureDao.getFixtures()
+                cachedData = fixtureDao.getFixtures(date)
                 Log.v("Repository","Making network call ${cachedData.size}")
             }
             cacheMapper.mapListOfEntityToDomain(cachedData)

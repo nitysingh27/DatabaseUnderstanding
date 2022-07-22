@@ -29,14 +29,14 @@ fun TeamDetails(
         teamsViewModel.teamStatisctis
     }
     val context = LocalContext.current as MainActivity
-    LaunchedEffect(key1 = selectedTeam.value) {
-        selectedTeam.value = teamsViewModel.getTeamDetails(
-            teamsViewModel.clickedTeam.team.id,
-            homeViewModel.leagueSelected.league.id,
-            2021,
-            context
-        )
-    }
+//    LaunchedEffect(key1 = selectedTeam.value) {
+//        selectedTeam.value = teamsViewModel.getTeamDetails(
+//            teamsViewModel.clickedTeam.team.id,
+//            homeViewModel.leagueSelected.league.id,
+//            2021,
+//            context
+//        )
+//    }
 
     Card(
         shape = RoundedCornerShape(20.dp),
